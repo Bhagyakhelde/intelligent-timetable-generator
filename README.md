@@ -255,6 +255,19 @@ Possible production improvements include:
 ## Live Demo
 
 https://intelligent-timetable-generator.vercel.app/
+## Screenshots
+
+### 1. Application Interface
+
+![Application Interface](Screenshot%201.png)
+
+### 2. Generated Timetable
+
+![Generated Timetable](Screenshot%202.png)
+
+### 3. Constraint Validation
+
+![Constraint Validation](Screenshot%203.png)
 
 ## Source Code
 
