@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Intelligent Timetable Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div>
+        <h1>Intelligent Timetable Generator</h1>
+        <p>Constraint-based college timetable scheduling system</p>
+    </div>
+</header>
+
+
+<main class="container">
+
+    <!-- ================= DIVISIONS ================= -->
+
+    <section class="card">
+
+        <div class="section-heading">
+            <div>
+                <span class="step">01</span>
+                <h2>Divisions</h2>
+            </div>
+
+            <span class="count" id="divisionCount">0</span>
+        </div>
+
+        <p class="description">
+            Add the college divisions that require separate timetables.
+        </p>
+
+        <div class="input-row">
+
+            <input
+                type="text"
+                id="divisionName"
+                placeholder="Example: CSE-A"
+                autocomplete="off"
+            >
+
+            <button onclick="addDivision()">
+                Add Division
+            </button>
+
+        </div>
+
+        <div id="divisionList" class="list"></div>
+
+    </section>
+
+
+
+    <!-- ================= SUBJECTS ================= -->
+
+    <section class="card">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="step">02</span>
+                <h2>Subjects & Faculty</h2>
+            </div>
+
+            <span class="count" id="subjectCount">0</span>
+
+        </div>
+
+        <p class="description">
+            Define subjects, assigned faculty, weekly periods and room requirements.
+        </p>
+
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label for="subjectDivision">
+                    Division
+                </label>
+
+                <select id="subjectDivision">
+
+                    <option value="">
+                        Select Division
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="subjectName">
+                    Subject Name
+                </label>
+
+                <input
+                    type="text"
+                    id="subjectName"
+                    placeholder="Example: Java"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="facultyName">
+                    Faculty
+                </label>
+
+                <input
+                    type="text"
+                    id="facultyName"
+                    placeholder="Example: Ravi"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="periods">
+                    Periods / Week
+                </label>
+
+                <input
+                    type="number"
+                    id="periods"
+                    min="1"
+                    max="30"
+                    placeholder="Example: 4"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="roomType">
+                    Room Requirement
+                </label>
+
+                <select id="roomType">
+
+                    <option value="normal">
+                        Normal Room
+                    </option>
+
+                    <option value="lab">
+                        Laboratory
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button onclick="addSubject()">
+            Add Subject
+        </button>
+
+
+        <div id="subjectList" class="list"></div>
+
+    </section>
+
+
+
+    <!-- ================= ROOMS ================= -->
+
+    <section class="card">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="step">03</span>
+                <h2>Classrooms</h2>
+            </div>
+
+            <span class="count" id="roomCount">0</span>
+
+        </div>
+
+        <p class="description">
+            Add normal classrooms and laboratory rooms available for scheduling.
+        </p>
+
+
+        <div class="input-row room-row">
+
+            <input
+                type="text"
+                id="roomNumber"
+                placeholder="Example: 101"
+                autocomplete="off"
+            >
+
+
+            <select id="roomCategory">
+
+                <option value="normal">
+                    Normal Room
+                </option>
+
+                <option value="lab">
+                    Laboratory
+                </option>
+
+            </select>
+
+
+            <button onclick="addRoom()">
+                Add Room
+            </button>
+
+        </div>
+
+
+        <div id="roomList" class="list"></div>
+
+    </section>
+
+
+
+    <!-- ================= SETTINGS ================= -->
+
+    <section class="card">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="step">04</span>
+                <h2>Timetable Settings</h2>
+            </div>
+
+        </div>
+
+
+        <div class="settings-grid">
+
+            <div class="form-group">
+
+                <label for="workingDays">
+                    Working Days
+                </label>
+
+                <select id="workingDays">
+
+                    <option value="5">
+                        Monday - Friday
+                    </option>
+
+                    <option value="6">
+                        Monday - Saturday
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="periodsPerDay">
+                    Periods Per Day
+                </label>
+
+                <select id="periodsPerDay">
+
+                    <option value="6">
+                        6 Periods
+                    </option>
+
+                    <option value="7">
+                        7 Periods
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="action-row">
+
+            <button
+                class="generate-btn"
+                onclick="generateTimetables()"
+            >
+                Generate Timetables
+            </button>
+
+
+            <button
+                class="reset-btn"
+                onclick="resetApplication()"
+            >
+                Reset
+            </button>
+
+        </div>
+
+
+        <div id="message"></div>
+
+    </section>
+
+
+
+    <!-- ================= RESULTS ================= -->
+
+    <section class="card results-card">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="step">05</span>
+                <h2>Generated Timetables</h2>
+            </div>
+
+        </div>
+
+
+        <div id="summary"></div>
+
+
+        <div id="timetableOutput">
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    📅
+                </div>
+
+                <h3>No timetable generated yet</h3>
+
+                <p>
+                    Add divisions, subjects and classrooms,
+                    then generate the timetable.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Intelligent Timetable Generator • Constraint-based scheduling prototype
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
