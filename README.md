@@ -263,12 +263,14 @@ https://intelligent-timetable-generator.vercel.app/
 
 ### 2. Generated Timetable
 
-![Generated Timetable](Screenshot%202.png)
+Automatically generated timetables for multiple divisions, including CSE-A and CSE-B, with assigned subjects, faculty, periods, and classrooms.
+
+![Generated Timetables](Screenshot%202.png)
 
 ### 3. Constraint Validation
 
-![Constraint Validation](Screenshot%203.png)
+Detects impossible constraints and displays clear scheduling errors.
 
-## Source Code
+![Constraint Validation](Screenshot%203.png)
 
 https://github.com/Bhagyakhelde/intelligent-timetable-generator
